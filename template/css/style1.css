@@ -1,0 +1,50 @@
+.table tbody>tr>td{
+	vertical-align		: top;
+}
+body {
+	background-color	: #FFFFFF;
+	padding-top			: 40px;
+	padding-bottom		: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position				: static;
+  display				: block;
+  margin-bottom			: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin				: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+  width					: auto;
+}
+
+.nama , .tt-hint{
+	border				: 2px solid #CCCCCC;
+	border-radius		: 8px 8px 8px 8px;
+	font-size			: 24px;
+	height				: 45px;
+	line-height			: 30px;
+	outline				: medium none;
+	padding				: 8px 12px;
+	width				: 400px;
+}
+
+.tt-dropdown-menu{
+	width				: 400px;
+	margin-top			: 5px;
+	padding				: 8px 12px;
+	background-color	: #fff;
+	border				: 1px solid #CCC;
+	border				: 1px solid rgba(0,0,0,0.2);
+	border-radius		: 8px 8px 8px 8px;
+	font-size			: 18px;
+	color				: #111;
+	background-color	: #F1F1F1;
+}
+
+/*generate */
+
+

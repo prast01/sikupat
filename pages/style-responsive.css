@@ -1,0 +1,139 @@
+<style>
+body {
+
+}
+
+.header{
+
+                text-align: center;
+
+                border-bottom: 1px solid #ddd;
+
+}
+
+table {
+
+                border: 0px solid black;
+
+                border-collapse: collapse;
+
+                margin: 0;
+
+                padding: 0;
+
+                width: 100%;
+
+}
+
+table caption {
+
+                font-size: 1.5em;
+
+                margin: .25em 0 .75em;
+
+}
+
+table tr {
+
+                background: ;
+
+                border: 0px solid black;
+
+                padding: .35em;
+
+}
+
+table th,
+
+table td {
+
+                padding: 4px;
+
+                text-align: left;
+
+}
+
+table th {
+
+                font-size: .85em;
+
+                letter-spacing: .1em;
+
+                text-transform: uppercase;
+
+                background: #5bc0de;
+
+                color: white;
+		
+		text-align: center;
+}
+
+table td img {
+
+                text-align: center;
+
+}
+
+@media screen and (max-width: 800px) {
+
+                table {
+
+                                border: 0;
+				                width: 100%;
+                }
+
+                table caption {
+
+                                font-size: 1.3em;
+
+                }
+
+                table thead {
+
+                                display: none;
+
+                }
+
+                table tr {
+
+                                border-bottom: 3px solid black;
+
+                                display: block;
+
+                                margin-bottom: .725em;
+
+                }
+
+                table td {
+
+                                border-bottom: 1px solid black;
+
+                                display: block;
+
+                                font-size: .8em;
+
+                                text-align: right;
+
+                }
+
+                table td:before {
+
+                                content: attr(data-label);
+
+                                float: left;
+
+                                font-weight: bold;
+
+                                text-transform: uppercase;
+
+                }
+
+                table td:last-child {
+
+                                border-bottom: 0;
+
+                }
+
+}
+
+</style>
