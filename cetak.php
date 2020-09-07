@@ -234,9 +234,9 @@ if (isset($_GET['id_keg'])) {
 							<table width="1300" border="0" style="border-collapse:collapse">
 								<?php
 								if ($id_keg != '6') {
-									$q2 = mysql_query("SELECT b.nama,a.uraian,a.minggu,a.nominal,a.ket FROM target_detail a, pegawai b WHERE a.id_spj='$data[id_spj]' AND a.bulan='$bln' AND a.pl=b.kd_peg");
+									$q2 = mysql_query("SELECT b.nama,a.uraian,a.minggu,a.nominal,a.ket FROM target_detail a, pegawai b WHERE a.id_spj='$data[id_spj]' AND a.bulan='$bln' AND a.pl=b.kd_peg AND a.st='0'");
 								} else {
-									$q2 = mysql_query("SELECT b.nama,a.uraian,a.minggu,a.nominal,a.ket FROM target_detail a, pegawai b WHERE a.id_spj='$data[id_spj]' AND a.bulan='$bln' AND a.pl=b.kd_peg AND a.seksi_pl='DJ002'");
+									$q2 = mysql_query("SELECT b.nama,a.uraian,a.minggu,a.nominal,a.ket FROM target_detail a, pegawai b WHERE a.id_spj='$data[id_spj]' AND a.bulan='$bln' AND a.pl=b.kd_peg AND a.seksi_pl='DJ002' AND a.st='0'");
 								}
 
 								while ($data2 = mysql_fetch_assoc($q2)) {
