@@ -1,5 +1,8 @@
 ﻿<?php
+// include "koneksi.php";
 include "koneksi.php";
+
+
 
 function Terbilang($x)
 {
