@@ -78,10 +78,18 @@ $kbidang 	= $r['kbidang'];
 
 function cekPagu($spj, $nominal)
 {
-	$a = mysql_fetch_assoc(mysql_query("SELECT pagu_anggaran, total_realisasi FROM spj WHERE id_spj='$spj'"));
-	$b = mysql_fetch_assoc(mysql_query("SELECT total_realisasi FROM total_realisasi WHERE id_spj='$spj'"));
+	$a = mysql_fetch_assoc(mysql_query("SELECT pagu_anggaran, total_realisasi, id_kegiatan FROM spj WHERE id_spj='$spj'"));
 
+	$id_kegiatan = $a['id_kegiatan'];
 	$pagu = $a['pagu_anggaran'];
+
+	if ($id_kegiatan == "28") {
+		$b = mysql_fetch_assoc(mysql_query("SELECT total_realisasi FROM total_realisasi_fukms WHERE id_spj='$spj'"));
+	} else {
+		$b = mysql_fetch_assoc(mysql_query("SELECT total_realisasi FROM total_realisasi WHERE id_spj='$spj'"));
+	}
+
+
 	$total = $a['total_realisasi'] + $b['total_realisasi'] + $nominal;
 
 	if ($total > $pagu) {
@@ -536,6 +544,7 @@ function _delFoto($id)
 						} else {
 							$ok = 0;
 							$jenis = $_POST['jenis_spj'];
+							// if ($_POST['kd_kegiatan'] != "28") {
 							if ($jenis != "") {
 								if ($pagu == '1') {
 									$cek2 = cek();
@@ -566,6 +575,9 @@ function _delFoto($id)
 							} else {
 								echo "<script>alert('Data Gagal Disimpan. Pilih Jenis SPJ Dahulu.');</script>";
 							}
+							// } else {
+							// 	echo "<script>alert('Data Gagal Disimpan. Hubungi Pihak BOK untuk menyesuaikan realisasi anggaran Fasilitasi Upaya Kesehatan Masyarakat Sekunder (DAK NON FISIK).');</script>";
+							// }
 						}
 					}
 				} elseif ($act == 'lkh' && !isset($_POST['bulan'])) {

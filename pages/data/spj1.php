@@ -29,6 +29,7 @@
 </style>
 
 <?php
+error_reporting(E_ALL ^ E_WARNING);
 $act	= isset($_GET['act']) ? $_GET['act'] : '';
 $ckseksi	= isset($_POST['ckseksi']) ? $_POST['ckseksi'] : '';
 $ckkegiatan	= isset($_POST['ckkegiatan']) ? $_POST['ckkegiatan'] : '';
@@ -248,7 +249,12 @@ $level_user = $r['level_user'];
 									$kode_rekening	= $hasil['kode_rekening'];
 									$pagu_anggaran	= $hasil['pagu_anggaran'];
 
-									$qa = mysql_fetch_assoc(mysql_query("SELECT total_realisasi FROM total_realisasi WHERE id_spj='$id_spj'"));
+									if ($id_kegiatan == "28") {
+										$qa = mysql_fetch_assoc(mysql_query("SELECT total_realisasi FROM total_realisasi_fukms WHERE id_spj='$id_spj'"));
+									} else {
+										$qa = mysql_fetch_assoc(mysql_query("SELECT total_realisasi FROM total_realisasi WHERE id_spj='$id_spj'"));
+									}
+
 
 									// $total_realisasi	= $hasil['total_realisasi'];
 									// if ($kseksi2 == 'DJ001') {
@@ -386,9 +392,13 @@ $level_user = $r['level_user'];
 									$nm_seksi	= $hasil2['nm_seksi'];
 									$pagu_anggaran	= $hasil3['pagu_anggaran'];
 
-									// $qa = mysql_fetch_assoc(mysql_query("SELECT SUM(total_realisasi) AS total_realisasi FROM total_realisasi2 WHERE id_kegiatan='$id_kegiatan' group by id_kegiatan"));
-									// $qa = mysql_fetch_assoc(mysql_query("SELECT SUM(a.nominal) AS total_realisasi FROM bibs a, spj b WHERE a.id_spj=b.id_spj AND b.id_kegiatan='$id_kegiatan' AND a.tgl_transfer != '0000-00-00' AND a.validasi = '1' AND MONTH(a.tgl_transfer) = '$bulan' GROUP BY b.id_kegiatan"));
-									$qa = mysql_fetch_assoc(mysql_query("SELECT SUM(a.nominal) as total_realisasi FROM bibs a, spj b WHERE a.id_spj=b.id_spj AND MONTH(a.tgl_transfer) <= '$bulan' AND a.tgl_transfer != '0000-00-00' AND a.kseksi != '' AND b.id_kegiatan='$id_kegiatan' group by b.id_kegiatan"));
+									// $qa = mysql_fetch_assoc(mysql_query("SELECT SUM(a.nominal) as total_realisasi FROM bibs a, spj b WHERE a.id_spj=b.id_spj AND MONTH(a.tgl_transfer) <= '$bulan' AND a.tgl_transfer != '0000-00-00' AND a.kseksi != '' AND b.id_kegiatan='$id_kegiatan' group by b.id_kegiatan"));
+									if ($id_kegiatan == "28") {
+										$qa = mysql_fetch_assoc(mysql_query("SELECT SUM(a.nominal) as total_realisasi FROM bibs a, spj b WHERE a.id_spj=b.id_spj AND MONTH(a.tgl_transfer) <= '$bulan' AND a.tgl_transfer != '0000-00-00' AND a.tgl_transfer > '2020-10-21' AND a.kseksi != '' AND b.id_kegiatan='$id_kegiatan' group by b.id_kegiatan"));
+									} else {
+										$qa = mysql_fetch_assoc(mysql_query("SELECT SUM(a.nominal) as total_realisasi FROM bibs a, spj b WHERE a.id_spj=b.id_spj AND MONTH(a.tgl_transfer) <= '$bulan' AND a.tgl_transfer != '0000-00-00' AND a.tgl_transfer > '2020-10-05' AND a.kseksi != '' AND b.id_kegiatan='$id_kegiatan' group by b.id_kegiatan"));
+									}
+
 
 
 									// $total_realisasi	= $hasil3['total_realisasi'];
