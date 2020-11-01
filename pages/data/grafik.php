@@ -92,7 +92,7 @@
 							$nm_seksi = $r['nm_seksi'];
 
 							// $qa = mysql_fetch_assoc(mysql_query("SELECT SUM(total_realisasi) AS total_realisasi FROM total_realisasi2 WHERE kseksi='$kseksi' group by kseksi"));
-							$qa = mysql_fetch_assoc(mysql_query("SELECT SUM(a.nominal) AS total_realisasi FROM bibs a, spj b WHERE a.id_spj=b.id_spj AND b.kseksi='$kseksi' AND a.tgl_transfer != '0000-00-00' AND a.validasi = '1' AND MONTH(a.tgl_transfer) <= '$bulan' AND a.tgl_transfer != '2020-10-05' GROUP BY b.kseksi"));
+							$qa = mysql_fetch_assoc(mysql_query("SELECT SUM(a.nominal) AS total_realisasi FROM bibs a, spj b WHERE a.id_spj=b.id_spj AND b.kseksi='$kseksi' AND a.tgl_transfer != '0000-00-00' AND a.validasi = '1' AND MONTH(a.tgl_transfer) <= '$bulan' AND a.tgl_transfer != '2020-10-05' AND b.kseksi2 = '' GROUP BY b.kseksi"));
 
 							// $qu = mysql_fetch_assoc(mysql_query("SELECT SUM(pagu_anggaran) AS pagu, SUM(total_realisasi) AS total_realisasi FROM spj WHERE kseksi='$kseksi' GROUP BY kseksi"));
 
@@ -152,11 +152,12 @@
 							// $id_keg = $r['id_kegiatan'];
 
 							// $qa = mysql_fetch_assoc(mysql_query("SELECT SUM(total_realisasi) AS total_realisasi FROM total_realisasi2 WHERE kseksi='$kseksi' group by kseksi"));
-							$qa = mysql_fetch_assoc(mysql_query("SELECT SUM(a.nominal) AS total_realisasi FROM bibs a, spj b WHERE a.id_spj=b.id_spj AND b.kseksi2='$kseksi' AND a.tgl_transfer != '0000-00-00' AND a.validasi = '1' AND MONTH(a.tgl_transfer) <= '$bulan' AND a.tgl_transfer != '2020-10-05' GROUP BY b.kseksi2"));
+							$qa = mysql_fetch_assoc(mysql_query("SELECT SUM(a.nominal) AS total_realisasi FROM bibs a, spj b WHERE a.id_spj=b.id_spj AND b.kseksi2='$kseksi' AND a.tgl_transfer != '0000-00-00' AND a.validasi = '1' AND MONTH(a.tgl_transfer) <= '$bulan' AND a.tgl_transfer != '2020-10-05' AND b.id_kegiatan != '28' GROUP BY b.kseksi2"));
+							$qa2 = mysql_fetch_assoc(mysql_query("SELECT SUM(a.nominal) AS total_realisasi FROM bibs a, spj b WHERE a.id_spj=b.id_spj AND b.kseksi2='$kseksi' AND a.tgl_transfer != '0000-00-00' AND a.validasi = '1' AND MONTH(a.tgl_transfer) <= '$bulan' AND a.tgl_transfer != '2020-10-21' AND b.id_kegiatan = '28' GROUP BY b.kseksi2"));
 
 							// $qu = mysql_fetch_assoc(mysql_query("SELECT SUM(pagu_anggaran) AS pagu, SUM(total_realisasi) AS total_realisasi FROM spj WHERE kseksi='$kseksi' GROUP BY kseksi"));
 
-							$realisasi = $qa['total_realisasi'] + $r['total_realisasi'];
+							$realisasi = $qa['total_realisasi'] + $qa2['total_realisasi'] + $r['total_realisasi'];
 							$pagu = $r['pagu'];
 
 							$persen_real = round(($realisasi / $pagu) * 100, 2);
@@ -206,7 +207,7 @@
 					}
 				}
 
-				$q = mysql_query("SELECT * FROM grafik_real a, user b WHERE a.kseksi=b.kseksi ORDER BY a.selisih ASC");
+				$q = mysql_query("SELECT * FROM grafik_real a, user b WHERE a.kseksi=b.kseksi ORDER BY a.realisasi DESC");
 
 				while ($qa = mysql_fetch_assoc($q)) {
 					$nm_seksi = $qa['nm_seksi'];
