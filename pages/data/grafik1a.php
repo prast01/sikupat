@@ -69,11 +69,14 @@ select.form-control {
 	  
       while($r = mysql_fetch_array($rw)){
       $kseksi = $r['kseksi'];
+	  
+	  $qa = mysql_fetch_assoc(mysql_query("SELECT SUM(total_realisasi) AS jml_total_realisasi FROM total_realisasi WHERE kseksi='$kseksi' AND id_kegiatan='$id_kegiatan' group by id_kegiatan"));
+
       $jml_pagu_anggaran = $r['jml_pagu_anggaran'];
-      $jml_total_realisasi = $r['jml_total_realisasi'];
-	  $sisa_pagu_anggaran = $jml_pagu_anggaran-$jml_total_realisasi; 
       $nm_seksi = $r['nm_seksi'];
-      $id_kegiatan = $r['id_kegiatan'];
+      // $jml_total_realisasi = $r['jml_total_realisasi'];
+      $jml_total_realisasi = $qa['jml_total_realisasi']+$r['jml_total_realisasi'];
+	  $sisa_pagu_anggaran = $jml_pagu_anggaran-$jml_total_realisasi;      
 	  
 		  $q = mysql_query("select * from kegiatan where id_kegiatan='$id_kegiatan'")or die(mysql_error());
 		  $r = mysql_fetch_array($q);
@@ -96,7 +99,7 @@ select.form-control {
   if($jml=='0'){
     echo $jml;
 //	echo "<script>window.location='http://dkk.sikdkkjepara.net/realisasi-kegiatan/home1.php?cat=data&page=grafik1b'</script>";
-	echo "<script>window.location='http://dkk.sikdkkjepara.net/realisasi-kegiatan/home1.php?cat=data&page=spj-bidang-a&act=tampil'</script>";
+	echo "<script>window.location='?cat=data&page=grafik1b'</script>";
   }
   
 ?>

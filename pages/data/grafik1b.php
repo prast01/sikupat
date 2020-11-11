@@ -57,9 +57,9 @@ select.form-control {
 						
 <?php
 	  
-	  $update = mysql_query("update kegiatan set kirim='0' ")or die(mysql_error());
+  $update = mysql_query("update kegiatan set kirim='0' ")or die(mysql_error());
   if($update){
-    echo "<script>window.location='http://dkk.sikdkkjepara.net/realisasi-kegiatan/home1.php?cat=data&page=grafik1a'</script>";
+    echo "<script>window.location='?cat=data&page=grafik1a'</script>";
   }
 
 ?>

@@ -298,7 +298,7 @@ function _delFoto($id)
 												<option value="">-Pilih-</option>
 												<?php
 												if ($_GET['act'] == 'ubah') {
-													$quer2 = mysql_query("select * from kegiatan WHERE kseksi='$kseksi' AND kirim='0'");
+													$quer2 = mysql_query("select * from kegiatan WHERE kseksi='$kseksi' AND ls='0'");
 													while ($row = mysql_fetch_assoc($quer2)) {
 												?>
 														<option <?php if ($id_kegiatan == $row['id_kegiatan']) {
@@ -309,7 +309,7 @@ function _delFoto($id)
 													<?php
 													}
 												} else {
-													$quer2 = mysql_query("SELECT * from kegiatan WHERE (kseksi='$kseksi' OR id_kegiatan IN (SELECT id_kegiatan FROM spj WHERE kbidang2='DK007' AND kseksi='$kseksi' GROUP BY id_kegiatan) OR id_kegiatan IN (SELECT id_keg FROM target_detail WHERE seksi='DJ002' AND seksi_pl='$kseksi' AND (bulan='$b' OR bulan='$b2'))) AND kirim='0'");
+													$quer2 = mysql_query("SELECT * from kegiatan WHERE (kseksi='$kseksi' OR id_kegiatan IN (SELECT id_kegiatan FROM spj WHERE kbidang2='DK007' AND kseksi='$kseksi' GROUP BY id_kegiatan) OR id_kegiatan IN (SELECT id_keg FROM target_detail WHERE seksi='DJ002' AND seksi_pl='$kseksi' AND (bulan='$b' OR bulan='$b2'))) AND ls='0'");
 													// $quer2=mysql_query("select * from kegiatan WHERE kirim='0'");
 													while ($row = mysql_fetch_assoc($quer2)) {
 													?>
@@ -710,9 +710,9 @@ function _delFoto($id)
 												<option value="">-Pilih-</option>
 												<?php
 												if ($kseksi == 'DJ001') {
-													$quer2 = mysql_query("SELECT * from kegiatan WHERE (kseksi='$s[kseksi]' OR id_kegiatan IN (SELECT id_kegiatan FROM spj WHERE kbidang2='DK007' AND kseksi='$s[kseksi]' GROUP BY id_kegiatan) OR id_kegiatan IN (SELECT id_keg FROM target_detail WHERE seksi='DJ002' AND seksi_pl='$s[kseksi]' AND (bulan='$b' OR bulan='$b2'))) AND kirim='0'");
+													$quer2 = mysql_query("SELECT * from kegiatan WHERE (kseksi='$s[kseksi]' OR id_kegiatan IN (SELECT id_kegiatan FROM spj WHERE kbidang2='DK007' AND kseksi='$s[kseksi]' GROUP BY id_kegiatan) OR id_kegiatan IN (SELECT id_keg FROM target_detail WHERE seksi='DJ002' AND seksi_pl='$s[kseksi]' AND (bulan='$b' OR bulan='$b2'))) AND ls='0'");
 												} else {
-													$quer2 = mysql_query("SELECT * from kegiatan WHERE (kseksi='$kseksi' OR id_kegiatan IN (SELECT id_kegiatan FROM spj WHERE kbidang2='DK007' AND kseksi='$kseksi' GROUP BY id_kegiatan) OR id_kegiatan IN (SELECT id_keg FROM target_detail WHERE seksi='DJ002' AND seksi_pl='$kseksi' AND (bulan='$b' OR bulan='$b2'))) AND kirim='0'");
+													$quer2 = mysql_query("SELECT * from kegiatan WHERE (kseksi='$kseksi' OR id_kegiatan IN (SELECT id_kegiatan FROM spj WHERE kbidang2='DK007' AND kseksi='$kseksi' GROUP BY id_kegiatan) OR id_kegiatan IN (SELECT id_keg FROM target_detail WHERE seksi='DJ002' AND seksi_pl='$kseksi' AND (bulan='$b' OR bulan='$b2'))) AND ls='0'");
 												}
 												while ($row = mysql_fetch_assoc($quer2)) {
 												?>
