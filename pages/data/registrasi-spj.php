@@ -1495,7 +1495,7 @@ function _delFoto($id)
 												<?php
 												if ($kseksi == 'DJ001') {
 												?>
-													<a href="print-regis-spj.php?tahun=<?php echo $tahun; ?>&bulan=<?php echo $bulan; ?>" target="_blank"><img src='img/print.png' title="Cetak" /></a>
+													<a href="print-regis-spj.php?tahun=<?php echo $tahun; ?>&bulan=<?php echo $bulan; ?>&guls=<?php echo $guls; ?>&sek=<?php echo $sek; ?>&stat=<?php echo $stat; ?>" target="_blank"><img src='img/print.png' title="Cetak" /></a>
 												<?php
 												}
 												?>
